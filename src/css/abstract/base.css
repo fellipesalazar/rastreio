@@ -291,9 +291,9 @@ body {
     
                                 &::before {
                                     content: "";
-                                    width: 2px;
+                                    width: 1.6px;
                                     height: calc(100% - 72px);
-                                    border-left: 2px dashed var(--neutral-40);
+                                    border-left: 1.6px dashed var(--neutral-40);
                                     position: absolute;
                                     top: 24px;
                                     left: 24px;
@@ -337,7 +337,6 @@ body {
                                         }
     
                                         .status-description {
-                                            font: var(--font-body-14);
                                             white-space: nowrap;
                                             overflow: hidden;
                                             text-overflow: ellipsis;
@@ -346,7 +345,7 @@ body {
                                         }
     
                                         .status-date {
-                                            font: var(--font-body-12-20);
+                                            font: var(--font-body-14);
                                             color: var(--neutral-80);
                                         }
                                     }
