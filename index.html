@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="src/css/styles.css">
+    <title>Rastreio Correios | Fellipe Salazar</title>
+</head>
+<body>
+    <div class="container">
+
+        <!-- hero -->
+        <section class="hero">
+            <figure class="correios-logo">
+                <img src="./assets/img/logo-correios.svg" alt="Logo Correios">
+            </figure>
+            <h1>Acompanhe seu pedido dos Correios</h1>
+            <p>Informe abaixo o código de rastreamento do pedido para acompanhar sua entrega.</p>
+            <div class="search-area">
+                <div class="input-area">
+                    <input class="input" placeholder="AA123456785BR" id="tracking-code">
+                    <div class="btn circle" id="tracking-btn">
+                        <object data="./assets/img/arrow.svg" type="image/svg+xml"></object>
+                    </div>
+                </div>
+                <span class="error-msg">
+                    <object data="./assets/img/alert.svg" type="image/svg+xml"></object>
+                    Informe o código de rastreio
+                </span>
+            </div>
+        </section>
+
+        <!-- recent searchs -->
+        <section class="recent-searchs">
+            <h2>Buscas anteriores</h2>
+            <div class="searchs">
+                <div class="search">
+                    <div class="icon">
+                        <object data="./assets/img/package.svg" type="image/svg+xml"></object>
+                    </div>
+                    <div>
+                        <p class="tracking-code">QA100316612BR</p>
+                        <p class="date">11/08/2023 14:50</p>
+                    </div>
+                </div>
+                <div class="search">
+                    <div class="icon">
+                        <object data="./assets/img/package.svg" type="image/svg+xml"></object>
+                    </div>
+                    <div>
+                        <p class="tracking-code">QA100316612BR</p>
+                        <p class="date">11/08/2023 14:50</p>
+                    </div>
+                </div>
+                <div class="search">
+                    <div class="icon">
+                        <object data="./assets/img/package.svg" type="image/svg+xml"></object>
+                    </div>
+                    <div>
+                        <p class="tracking-code">QA100316612BR</p>
+                        <p class="date">11/08/2023 14:50</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- donate -->
+        <section class="donate">
+            <h2>Sua experiência foi boa?</h2>
+            <p>Você pode ajudar a manter esta e outras ferramentas gratuitas através da sua doação para o Pix abaixo.</p>
+            <div class="donate-area">
+                <input class="input" value="34974fb7-176f-4662-b340-739c7365b11a" readonly>
+                <div class="btn" id="copy-btn">
+                    <object data="./assets/img/copy.svg" type="image/svg+xml"></object>
+                </div>
+            </div>
+        </section>
+
+        <!-- footer -->
+        <footer>
+            <figure class="fellipe-logo">
+                <img src="./assets/img/logo-fellipe.svg" alt="Logo Fellipe Salazar">
+            </figure>
+            <div class="social-btns">
+                <a href="#" class="social-btn">
+                    <object data="./assets/img/linkedin.svg" type="image/svg+xml"></object>
+                </a>
+                <a href="#" class="social-btn">
+                    <object data="./assets/img/behance.svg" type="image/svg+xml"></object>
+                </a>
+                <a href="#" class="social-btn">
+                    <object data="./assets/img/medium.svg" type="image/svg+xml"></object>
+                </a>
+                <a href="#" class="social-btn">
+                    <object data="./assets/img/whatsapp.svg" type="image/svg+xml"></object>
+                </a>
+            </div>
+            <p>Para me contratar como freelancer para consultorias, design ou desenvolvimento, envie um e-mail para <a href="mailto:contato@fellipe.site">contato@fellipe.site</a>.</p>
+            <p>Este site utiliza dados de rastreamentos para melhorar sua experiência de navegação e a API Pública da <a href="https://linketrack.com/api" target="_blank">Link & Track</a> para realizar o rastreio das encomendas.</p>
+            <div class="copyright">
+                <p>Site desenvolvido por mim ❤️</p>
+                <p>© 2023 • Todos os direitos reservados.</p>
+            </div>
+        </footer>
+
+        <!-- modals -->
+        <div class="modal-backdrop">
+            <div class="modal">
+                <div class="modal-header">
+                    <span class="touch-area"></span>
+                    <div class="modal-close">
+                        <object data="./assets/img/close.svg" type="image/svg+xml"></object>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <!-- tracking-modal -->
+                    <div class="modal-content" id="tracking-modal">
+                        <div class="tracking-info">
+                            <p>Código de rastreio</p>
+                            <p class="tracking-code">QA100316612BR</p>
+                        </div>
+                        <div class="tracking-area">
+                            <div class="tracking-status current-status">
+                                <div class="icon">
+                                    <span class="material-symbols-rounded">box</span>
+                                </div>
+                                <div class="status-info">
+                                    <h4 class="status-title">Objeto entregue ao destinatário</h4>
+                                    <p class="status-description">Local: Unidade de Distribuição - Brasilia / DF</p>
+                                    <p class="status-date">11/08/2023 14:50</p>
+                                </div>
+                            </div>
+                            <div class="tracking-status">
+                                <div class="icon">
+                                    <span class="material-symbols-rounded">map</span>
+                                </div>
+                                <div class="status-info">
+                                    <h4 class="status-title">Objeto entregue ao destinatário</h4>
+                                    <p class="status-description">Local: Unidade de Distribuição - Brasilia / DF</p>
+                                    <p class="status-date">11/08/2023 14:50</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- empty modal -->
+                    <div class="modal-content" id="empty-modal">
+                        <div class="icon">
+                            <object data="./assets/img/empty.svg" type="image/svg+xml"></object>
+                        </div>
+                        <p class="h1">Hmm, não achei...</p>
+                        <p>Não consegui encontrar sua encomenda com esse código de rastreio. Você pode tentar conferir o código e pesquisar novamente.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- alert -->
+        <div class="alert">
+            <div class="icon">
+                <object data="./assets/img/check.svg" type="image/svg+xml"></object>
+            </div>
+            <p class="text">Chave Pix copiada!</p>
+        </div>
+
+    </div>
+</body>
+</html>

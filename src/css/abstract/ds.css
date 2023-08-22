@@ -1,0 +1,31 @@
+@import url('https://fonts.cdnfonts.com/css/tasa-orbiter-display');
+@import url('https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+:root {
+    /* Color theme light */
+    --brand-primary: #0D73A8;
+    --neutral-100: #000000;
+    --neutral-80: rgba(0,0,0,.56);
+    --neutral-60: rgba(0,0,0,.40);
+    --neutral-50: rgba(0,0,0,.24);
+    --neutral-40: rgba(0,0,0,.16);
+    --neutral-20: #f1f4f9;
+    --neutral-0: #FFFFFF;
+    --red-100: #F24822;
+    --green-100: #129736;
+    --green-10: #D1EFD9;
+    --backdrop-modal: rgba(0,0,0,.5);
+    --transparent-blur: rgba(245,245,245,.4);
+
+    /* Font styles */
+    --font-heading-32: 700 32px/40px 'Averia Serif Libre', cursive;
+    --font-heading-24: 700 24px/32px 'Averia Serif Libre', cursive;
+    --font-heading-16: 700 16px/24px 'Averia Serif Libre', cursive;
+    --font-body-16: 400 16px/24px 'TASA Orbiter Deck', sans-serif;
+    --font-body-16-medium: 500 16px/24px 'TASA Orbiter Deck', sans-serif;
+    --font-body-14: 400 14px/24px 'TASA Orbiter Deck', sans-serif;
+    --font-body-14-20-medium: 500 14px/20px 'TASA Orbiter Deck', sans-serif;
+    --font-body-14-20: 400 14px/20px 'TASA Orbiter Deck', sans-serif;
+    --font-body-12-20: 400 12px/20px 'TASA Orbiter Deck', sans-serif;
+}
+
