@@ -269,73 +269,117 @@ body {
                         gap: 40px;
                         padding: 8px 24px;
 
-                        .tracking-info {
-                            & p {
-                                color: var(--neutral-80);
+                        &#tracking-modal {
+                            padding-bottom: 24px;
 
-                                &.tracking-code {
-                                    font: var(--font-heading-32);
-                                    color: var(--neutral-100);
+                            .tracking-info {
+                                & p {
+                                    color: var(--neutral-80);
+    
+                                    &.tracking-code {
+                                        font: var(--font-heading-32);
+                                        color: var(--neutral-100);
+                                    }
+                                }
+                            }
+    
+                            .tracking-area {
+                                display: flex;
+                                flex-direction: column;
+                                gap: 40px;
+                                position: relative;
+    
+                                &::before {
+                                    content: "";
+                                    width: 2px;
+                                    height: calc(100% - 72px);
+                                    border-left: 2px dashed var(--neutral-40);
+                                    position: absolute;
+                                    top: 24px;
+                                    left: 24px;
+                                }
+    
+                                .tracking-status {
+                                    display: flex;
+                                    gap: 16px;
+    
+                                    &.current-status {
+                                        .icon {
+                                            background-color: var(--green-10);
+    
+                                            & span {
+                                                color: var(--green-100);
+                                            }
+                                        }
+                                    }
+    
+                                    .icon {
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                        width: 48px;
+                                        min-width: 48px;
+                                        height: 48px;
+                                        border-radius: 50%;
+                                        background-color: var(--neutral-20);
+                                        position: relative;
+    
+                                        & span {
+                                            color: var(--neutral-100);
+                                        }
+                                    }
+    
+                                    .status-info {
+                                        width: calc(100% - 48px - 16px);
+    
+                                        .status-title {
+                                            font: var(--font-heading-16);
+                                        }
+    
+                                        .status-description {
+                                            font: var(--font-body-14);
+                                            white-space: nowrap;
+                                            overflow: hidden;
+                                            text-overflow: ellipsis;
+                                            line-clamp: 1;
+                                            max-width: 100%;
+                                        }
+    
+                                        .status-date {
+                                            font: var(--font-body-12-20);
+                                            color: var(--neutral-80);
+                                        }
+                                    }
                                 }
                             }
                         }
 
-                        .tracking-area {
-                            display: flex;
-                            flex-direction: column;
-                            gap: 40px;
-                            position: relative;
+                        &#empty-modal {
+                            min-height: 408px;
+                            align-items: center;
+                            justify-content: center;
+                            display: none;
 
-                            .tracking-status {
+                            &.show {
                                 display: flex;
-                                gap: 16px;
+                            }
 
-                                &.current-status {
-                                    .icon {
-                                        background-color: var(--green-10);
+                            .icon {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                width: 128px;
+                                height: 128px;
+                                border-radius: 50%;
+                                background-color: var(--neutral-20);
+                            }
 
-                                        & span {
-                                            color: var(--green-100);
-                                        }
-                                    }
-                                }
+                            .h1 {
+                                font: var(--font-heading-32);
+                            }
 
-                                .icon {
-                                    display: flex;
-                                    align-items: center;
-                                    justify-content: center;
-                                    width: 48px;
-                                    min-width: 48px;
-                                    height: 48px;
-                                    border-radius: 50%;
-                                    background-color: var(--neutral-20);
-
-                                    & span {
-                                        color: var(--neutral-100);
-                                    }
-                                }
-
-                                .status-info {
-                                    width: calc(100% - 48px - 16px);
-
-                                    .status-title {
-                                        font: var(--font-heading-16);
-                                    }
-
-                                    .status-description {
-                                        font: var(--font-body-14);
-                                        white-space: nowrap;
-                                        overflow: hidden;
-                                        text-overflow: ellipsis;
-                                        line-clamp: 1;
-                                        max-width: 100%;
-                                    }
-
-                                    .status-date {
-                                        font: var(--font-body-12-20);
-                                        color: var(--neutral-80);
-                                    }
-                                }
+                            & p {
+                                text-align: center;
                             }
                         }
                     }
