@@ -52,6 +52,7 @@ $(function(){
             if(res.quantidade == 0){
                 $("#empty-modal").addClass("show");
                 $("#tracking-modal").removeClass("show");
+                $("body").addClass("modal-open");
 
                 $(".modal, .modal-backdrop").addClass("show");
             }
