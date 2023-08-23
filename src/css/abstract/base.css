@@ -31,6 +31,7 @@ body {
 
     &.modal-open {
         overflow-y: hidden;
+        max-width: 100vh;
     }
 
     .container {
