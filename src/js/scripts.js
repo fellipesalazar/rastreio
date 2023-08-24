@@ -19,6 +19,18 @@ $(function(){
         }
     });
 
+    // máscara do campo de tracking
+    $('#tracking-code').mask('AA000000000AA', {
+        translation: {
+          'A': {
+            pattern: /[A-Za-z]/
+          },
+          '0': {
+            pattern: /[0-9]/
+          }
+        }
+    });
+
     // buscar os dados da reserva
     $("#tracking-btn").on("click",function(){
         const trackingCode = $("#tracking-code").val().toUpperCase();
@@ -57,9 +69,75 @@ $(function(){
                 $(".modal, .modal-backdrop").addClass("show");
             }
 
+            var linha = "";
+            var current = "";
+            var icons = {
+                "postado": "package_2",
+                "encaminhado": "local_shipping",
+                "saiu": "map",
+                "entregue": "box",
+                "fiscalização": "search",
+                "brasil": "location_on",
+                "exportação": "public"
+            }
 
+            res.eventos.forEach((evento, index) => {
 
-            console.log(dados);
+                var status = evento.status.toLowerCase();
+                var iconName = "package_2";
+
+                for (var keyword in icons) {
+                    if (status.includes(keyword)) {
+                        iconName = icons[keyword];
+                        break;
+                    }
+                }
+
+                if(index == 0){
+                    current = "current-status";
+                }else{
+                    current = "";
+                }
+
+                var subStatusLine = "";
+                if (!status.includes("exportação")) {
+                    if (evento.subStatus.length === 1) {
+                        var subStatusText = evento.subStatus[0];
+                        if (subStatusText === "Local: País - /") {
+                            subStatusText = "Local: País de origem";
+                        }
+                        subStatusLine = `<p class="status-description">${subStatusText}</p>`;
+                    } else if (evento.subStatus.length === 2) {
+                        var subStatusOrigem = evento.subStatus[0];
+                        var subStatusDestino = evento.subStatus[1];
+
+                        if (subStatusDestino.startsWith("Destino: ")) {
+                            var destino = subStatusDestino.split("Destino: ")[1];
+                            subStatusLine = `<p class="status-description">Origem: ${subStatusOrigem}</p><p class="status-description">Destino ${destino}</p>`;
+                        } else {
+                            subStatusLine = `<p class="status-description">${subStatusOrigem}</p>`;
+                        }
+                    }
+                }
+
+                linha += `<div class="tracking-status ${current}">`;
+                linha += `<div class="icon">`;
+                linha += `<span class="material-symbols-rounded">${iconName}</span>`;
+                linha += `</div>`;
+                linha += `<div class="status-info">`;
+                linha += `<h4 class="status-title">${evento.status}</h4>`;
+                linha += subStatusLine;
+                linha += `<p class="status-date">${evento.data} ${evento.hora}</p>`;
+                linha += `</div>`;
+                linha += `</div>`;
+            });
+
+            $(".tracking-area").html(linha);
+            $(".modal .tracking-code").text(res.codigo);
+            $("#empty-modal").removeClass("show");
+            $("#tracking-modal").addClass("show");
+            $("body").addClass("modal-open");
+            $(".modal, .modal-backdrop").addClass("show");
 
         }).catch(function (error) {
 
