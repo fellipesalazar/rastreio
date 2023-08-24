@@ -246,7 +246,7 @@ body {
                 flex-direction: column;
                 border-radius: 16px 16px 0 0;
                 background-color: var(--neutral-0);
-                max-height: 90vh;
+                max-height: 90vh !important;
                 transform: translateY(100%);
                 transition: transform .24s ease-in-out;
                 transition-delay: .12s;
