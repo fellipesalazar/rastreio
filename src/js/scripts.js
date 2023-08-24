@@ -67,6 +67,7 @@ $(function(){
                 $("body").addClass("modal-open");
 
                 $(".modal, .modal-backdrop").addClass("show");
+                return;
             }
 
             var linha = "";
@@ -108,12 +109,12 @@ $(function(){
                         }
                         subStatusLine = `<p class="status-description">${subStatusText}</p>`;
                     } else if (evento.subStatus.length === 2) {
-                        var subStatusOrigem = evento.subStatus[0];
-                        var subStatusDestino = evento.subStatus[1];
-
+                        var subStatusOrigem = evento.subStatus[0].replace("Origem:", "Origem:");
+                        var subStatusDestino = evento.subStatus[1].replace("Destino:", "Destino:");
+            
                         if (subStatusDestino.startsWith("Destino: ")) {
                             var destino = subStatusDestino.split("Destino: ")[1];
-                            subStatusLine = `<p class="status-description">Origem: ${subStatusOrigem}</p><p class="status-description">Destino ${destino}</p>`;
+                            subStatusLine = `<p class="status-description">${subStatusOrigem}</p><p class="status-description">${subStatusDestino}</p>`;
                         } else {
                             subStatusLine = `<p class="status-description">${subStatusOrigem}</p>`;
                         }
@@ -145,6 +146,16 @@ $(function(){
             $(".msg .text").text(error);
 
         });
+    });
+
+    // reseta tudo e fecha o modal
+    $(".modal-close").on("click", function(){
+        $(".tracking-area").html("");
+        $(".modal .tracking-code").text("");
+        $("#empty-modal").removeClass("show");
+        $("#tracking-modal").removeClass("show");
+        $("body").removeClass("modal-open");
+        $(".modal, .modal-backdrop").removeClass("show");
     });
 
     // remover erro do input

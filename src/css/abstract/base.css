@@ -234,6 +234,7 @@ body {
             opacity: 0;
             pointer-events: none;
             user-select: none;
+            transition: .12s ease-in-out;
 
             &.show {
                 opacity: 1;
@@ -248,11 +249,12 @@ body {
                 height: 100vh;
                 overflow: hidden;
                 transform: translateY(100%);
-                transition: transform .24s ease-in-out;
+                transition: .24s ease-in-out;
                 transition-delay: .12s;
 
                 &.show {
                     transform: translateY(0);
+                    transition-delay: .12s;
                 }
 
                 .modal-header {
