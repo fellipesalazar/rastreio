@@ -105,27 +105,44 @@ $(function(){
                 if (!status.includes("exportação")) {
                     if (evento.subStatus.length === 1) {
                         var subStatusText = evento.subStatus[0];
+                        if (subStatusText === "Local: País - /") {
+                            subStatusText = "Local: País de origem";
+                        }
                         if (subStatusText.startsWith("Origem: ")) {
                             subStatusText = subStatusText.replace("Origem: ", "De: ");
                         } else if (subStatusText.startsWith("Destino: ")) {
                             subStatusText = subStatusText.replace("Destino: ", "Para: ");
                         } else if (subStatusText.startsWith("Local: ")) {
-                            subStatusText = subStatusText.replace("Local: ", "Local: ");
+                            subStatusText = subStatusText.replace("Local: ", "");
                         }
                         subStatusLine = `<p class="status-description">${subStatusText}</p>`;
                     } else if (evento.subStatus.length === 2) {
                         var subStatusOrigem = evento.subStatus[0];
                         var subStatusDestino = evento.subStatus[1];
+
+                        if (subStatusOrigem === "Origem: País - /") {
+                            subStatusOrigem = "De: País de origem";
+                        }
+
+                        if (subStatusDestino === "Destino: País - / BR") {
+                            subStatusDestino = "Para: Brasil";
+                        }
             
                         if (subStatusOrigem.startsWith("Origem: ")) {
                             subStatusOrigem = subStatusOrigem.replace("Origem: ", "De: ");
-                        } else if (subStatusOrigem.startsWith("Destino: ")) {
-                            subStatusOrigem = subStatusOrigem.replace("Destino: ", "Para: ");
                         } else if (subStatusOrigem.startsWith("Local: ")) {
-                            subStatusOrigem = subStatusOrigem.replace("Local: ", "Local: ");
+                            subStatusOrigem = subStatusOrigem.replace("Local: ", "");
                         }
-            
-                        subStatusLine = `<p class="status-description">${subStatusOrigem}</p><p class="status-description">${subStatusDestino}</p>`;
+
+                        if (subStatusDestino.startsWith("Destino: ")) {
+                            subStatusDestino = subStatusDestino.replace("Destino: ", "Para: ");
+                        }
+
+                        if (!subStatusDestino.startsWith("<span")) {
+                            subStatusLine = `<p class="status-description">${subStatusOrigem}</p><p class="status-description">${subStatusDestino}</p>`;
+                        } else {
+                            subStatusLine = `<p class="status-description">${subStatusOrigem}</p>`;
+                        }
                     }
                 }
 

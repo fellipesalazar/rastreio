@@ -394,7 +394,7 @@ body {
                         }
 
                         &#empty-modal {
-                            min-height: 408px;
+                            height: 100%;
                             align-items: center;
                             justify-content: center;
 
