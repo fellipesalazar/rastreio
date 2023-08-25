@@ -64,7 +64,7 @@ $(function(){
             if(res.quantidade == 0){
                 $("#empty-modal").addClass("show");
                 $("#tracking-modal").removeClass("show");
-                $("body").addClass("modal-open");
+                $("body, .container").addClass("modal-open");
 
                 $(".modal, .modal-backdrop").addClass("show");
                 return;
@@ -138,7 +138,7 @@ $(function(){
             $(".modal .tracking-code").text(res.codigo);
             $("#empty-modal").removeClass("show");
             $("#tracking-modal").addClass("show");
-            $("body").addClass("modal-open");
+            $("body, .container").addClass("modal-open");
             $(".modal, .modal-backdrop").addClass("show");
 
         }).catch(function (error) {
@@ -155,7 +155,7 @@ $(function(){
         $(".modal .tracking-code").text("");
         $("#empty-modal").removeClass("show");
         $("#tracking-modal").removeClass("show");
-        $("body").removeClass("modal-open");
+        $("body, .container").removeClass("modal-open");
         $(".modal, .modal-backdrop").removeClass("show");
     });
 
