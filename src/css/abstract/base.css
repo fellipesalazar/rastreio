@@ -40,6 +40,11 @@ body {
         gap: 12px;
         background-color: var(--neutral-20);
 
+        &.modal-open {
+            overflow-y: hidden;
+            max-width: 100vh;
+        }
+
         & section {
             display: flex;
             flex-direction: column;
