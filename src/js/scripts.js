@@ -79,7 +79,8 @@ $(function(){
                 "entregue": "box",
                 "fiscalização": "search",
                 "brasil": "location_on",
-                "exportação": "public"
+                "exportação": "public",
+                "devolvido": "assignment_return"
             }
 
             res.eventos.forEach((evento, index) => {
