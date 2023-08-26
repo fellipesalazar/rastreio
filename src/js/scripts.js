@@ -33,7 +33,35 @@ $(function(){
 
     // buscar os dados da reserva
     $("#tracking-btn").on("click",function(){
-        const trackingCode = $("#tracking-code").val().toUpperCase();
+        getTracking($("#tracking-code").val());
+    });
+
+    // buscar dados da reserva clicando em uma busca anterior
+    $("body").on("click",".search", function(){
+        const trackingCode = $(this).data("code");
+        getTracking(trackingCode);
+    });
+
+    // reseta tudo e fecha o modal
+    $(".modal-close").on("click", function(){
+        $(".tracking-area").html("");
+        $(".modal .tracking-code").text("");
+        $("#empty-modal").removeClass("show");
+        $("#tracking-modal").removeClass("show");
+        $("body, .container").removeClass("modal-open");
+        $(".modal, .modal-backdrop").removeClass("show");
+    });
+
+    // remover erro do input
+    $("#tracking-code").on("input", function(){
+        if($("#tracking-code").val().length == 13) {
+            $(".error-msg").removeClass("show");
+            $(".input-area").removeClass("error");
+        }
+    });
+
+    function getTracking(code){
+        const trackingCode = code.toUpperCase();
         let trackingCodeSize = trackingCode.length;
         let codeErrorMessage = "Informe o código de rastreio";
         const apiToken = "0cf8570a61aa63d4c3001a461a186015214832f74eb2c09b19b57f04d6dfd18d";
@@ -69,6 +97,44 @@ $(function(){
                 $(".modal, .modal-backdrop").addClass("show");
                 return;
             }
+
+            var currentTime = new Date();
+            var formattedTime = currentTime.toLocaleDateString() + ' ' + currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            var trackingData = {
+                code: trackingCode,
+                date: formattedTime
+            };
+
+            var history = JSON.parse(localStorage.getItem('trackingHistory')) || [];
+
+            // Verificar se o código já existe no histórico
+            var existingIndex = history.findIndex(function(item) {
+                return item.code === trackingCode;
+            });
+
+            if (existingIndex !== -1) {
+                // Se o código já existe, atualize o horário
+                history[existingIndex].date = formattedTime;
+                // Mova o item para o início do array
+                var item = history.splice(existingIndex, 1)[0];
+                history.unshift(item);
+            } else {
+                // Se o código não existe, crie um novo registro
+                var trackingData = {
+                    code: trackingCode,
+                    date: formattedTime
+                };
+                history.unshift(trackingData);
+                
+                // Remova o último item se houver mais de 5
+                if (history.length > 5) {
+                    history.pop();
+                }
+            }
+            
+            localStorage.setItem('trackingHistory', JSON.stringify(history));
+            mostrarHistorico();
 
             var linha = "";
             var current = "";
@@ -171,26 +237,37 @@ $(function(){
             $(".msg .text").text(error);
 
         });
-    });
+    }
 
-    // reseta tudo e fecha o modal
-    $(".modal-close").on("click", function(){
-        $(".tracking-area").html("");
-        $(".modal .tracking-code").text("");
-        $("#empty-modal").removeClass("show");
-        $("#tracking-modal").removeClass("show");
-        $("body, .container").removeClass("modal-open");
-        $(".modal, .modal-backdrop").removeClass("show");
-    });
+    function mostrarHistorico(){
+        var history = JSON.parse(localStorage.getItem('trackingHistory')) || [];
+        var historyLine = "";
 
-    // remover erro do input
-    $("#tracking-code").on("input", function(){
-        if($("#tracking-code").val().length == 13) {
-            $(".error-msg").removeClass("show");
-            $(".input-area").removeClass("error");
+        $(".searchs").empty();
+
+        if(history.length === 0) {
+            $(".recent-searchs").removeClass("show");
+        }else{
+
+            history.forEach(item => {
+                historyLine += `<div class="search" data-code="${item.code}">`;
+                    historyLine += `<div class="icon">`;
+                        historyLine += `<object data="./assets/img/package.svg" type="image/svg+xml"></object>`;
+                    historyLine += `</div>`;
+                    historyLine += `<div>`;
+                        historyLine += `<p class="tracking-code">${item.code}</p>`;
+                        historyLine += `<p class="date">${item.date}</p>`;
+                    historyLine += `</div>`;
+                historyLine += `</div>`;
+            });
+
+            $(".recent-searchs").addClass("show");
+            $(".searchs").html(historyLine);
+
         }
-    });
 
-    
+    }
+
+    mostrarHistorico();
 
 });

@@ -122,6 +122,12 @@ body {
             }
 
             &.recent-searchs {
+                display: none;
+
+                &.show {
+                    display: flex;
+                }
+
                 & h2 {
                     font: var(--font-heading-24);
                 }
@@ -298,11 +304,6 @@ body {
 
                 .modal-body {
                     overflow-y: auto;
-                    min-height: calc(100vh - 88px);
-                    display: flex;
-                    align-items: center;
-                    justify-content: flex-start;
-                    flex-direction: column;
 
                     .modal-content {
                         display: none;
